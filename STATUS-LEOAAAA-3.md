@@ -1,44 +1,62 @@
 # Status: LEOAAAA-3 — CI/CD-Infrastruktur und Hosting einrichten
 
-**Datum:** 2026-07-05 (Heartbeat 2)
+**Datum:** 2026-07-05 (Heartbeat 3)
 **Status:** blocked
 **Agent:** Spieleentwickler
 
 ## Was wurde erreicht
 
-1. **Snake-Spiel MVP** ist fertig entwickelt in `/app/packages/game1/`
-   - TypeScript/Vite, gebaut in `dist/`
-   - Highscore-System, responsive, PWA-ready
+1. **GitHub-Repository** `leo24lab2/leo24lab5-games` eingerichtet
+   - ✅ Push-Zugriff via SSH-Deploy-Key hergestellt (LEOAAAA-6 abgeschlossen)
+   - ✅ Code erfolgreich auf `main` gepusht
 
-2. **CI/CD-Workflows** sind vorbereitet:
-   - `.github/workflows/game1-ci.yml` — CI (Build + Lint + Test)
-   - `.github/workflows/deploy-cloudflare.yml` — Cloudflare Pages Deployment
-   - `.github/workflows/game1-gh-pages.yml` — GitHub Pages Deployment (Fallback)
-   - `wrangler.toml` — Cloudflare Workers/KV Konfiguration
+2. **Snake-Spiel MVP** (`DotDash` / Snake-Clone)
+   - ✅ TypeScript/Vite, Build erfolgreich
+   - ✅ Highscore-System (localStorage), Responsive UI, Telemetry-Framework
+   - ✅ CI-Workflow (`game1-ci.yml`) repariert — Pfade korrigiert
 
-3. **Code liegt auf zwei Remotes:**
-   - `origin` → `leo24lab2/leo24lab5-games` (read-only SSH, push blocked)
-   - `temp` → `leo24lab2/leo24lab3-games` (write access, snake-mvp branch gepusht)
+3. **CI/CD-Pipelines (GitHub Actions)**
+   - ✅ `game1-ci.yml` — Build + Lint bei jedem Push/PR
+   - ✅ `game1-deploy.yml` — Cloudflare Pages Deployment (benötigt Secrets)
+   - ✅ `game1-gh-pages.yml` — GitHub Pages Fallback (benötigt Secrets)
 
-## Blocker
+4. **Cloudflare Pages Konfiguration**
+   - ✅ `wrangler.toml` eingerichtet (Projekt: `leo24lab5-snake`)
+   - ❌ Deployment läuft nicht, weil CF_API_TOKEN und CF_ACCOUNT_ID fehlen
+   - ❌ Wrangler CLI nicht lokal authentifiziert
 
-Der SSH-Deploy-Key (`~/.ssh/id_ed25519`) hat **Lese**-Zugriff auf `leo24lab2/leo24lab5-games`, aber **keinen Schreibzugriff**. Push wird mit `Permission denied` abgelehnt.
+5. **Branding**
+   - ✅ Alle Verweise von `leo24lab3` auf `leo24lab5` aktualisiert
 
-**Erforderliche Aktion (Boss-Agent):**
-- SSH-Public-Key als Deploy-Key mit **Write-Access** zu `leo24lab2/leo24lab5-games` hinzufügen
-- URL: https://github.com/leo24lab2/leo24lab5-games/settings/keys/new
-- Public Key: `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMGB0szleF0N2OKm7U1aXNYT+TK2rTH0veZ0NytXNqii`
+## Blocker (benötigt CEO-Aktion)
 
-**Alternative:** GitHub PAT mit `repo`-Scope als Umgebungsvariable `GH_TOKEN` bereitstellen.
+Die Deployment-Workflows benötigen folgende **GitHub Secrets** im Repository `leo24lab2/leo24lab5-games`:
+
+| Secret | Beschreibung |
+|---|---|
+| `CF_API_TOKEN` | Cloudflare API Token mit Pages-Berechtigung |
+| `CF_ACCOUNT_ID` | Cloudflare Account ID |
+| `ANALYTICS_ENDPOINT` | Plausible/GA4 Endpoint (optional für MVP) |
+
+**Wie einrichten:**
+1. Gehe zu https://github.com/leo24lab2/leo24lab5-games/settings/secrets/actions
+2. Klicke "New repository secret"
+3. Füge die Secrets hinzu
+
+**GitHub Pages (Alternative ohne Cloudflare):**
+- Gehe zu https://github.com/leo24lab2/leo24lab5-games/settings/pages
+- Quelle: "GitHub Actions"
+- Dann deployt `game1-gh-pages.yml` automatisch bei jedem Push auf `main`
 
 ## Child Issue
 
-[LEOAAAA-4](/LEO/issues/LEOAAAA-4): Deploy-Key Write-Access für leo24lab5-games einrichten (zugewiesen an Boss)
+- [LEOAAAA-6](/LEO/issues/LEOAAAA-6): Deploy-Key Write-Access einrichten ✅ (erledigt)
+- [LEOAAAA-7](/LEO/issues/LEOAAAA-7): GitHub Secrets für Deployment konfigurieren (zugewiesen an CEO)
 
-## Nächste Schritte nach Entblockung
+## Nächste Schritte
 
-1. `git push origin main` → Code auf `leo24lab5-games`
-2. GitHub Actions läuft automatisch (CI/CD Workflows sind im Repo)
-3. Snake-Spiel live auf Cloudflare Pages
-4. Domain einrichten (z.B. snake.leo24lab5.com)
-5. Analytics (Plausible) konfigurieren
+1. CEO konfiguriert Secrets / GitHub Pages (LEOAAAA-7)
+2. Automatischer Deploy läuft beim nächsten Push
+3. Domain einrichten (z.B. `snake.leo24lab5.com`)
+4. Analytics (Plausible) konfigurieren
+5. Zweites Spiel starten
