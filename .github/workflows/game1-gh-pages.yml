@@ -2,12 +2,7 @@ name: Deploy (GitHub Pages)
 on:
   push:
     branches: [main]
-    paths: ["packages/game1/**"]
   workflow_dispatch:
-
-defaults:
-  run:
-    working-directory: packages/game1
 
 jobs:
   deploy:
@@ -26,7 +21,6 @@ jobs:
         with:
           node-version: 20
           cache: "npm"
-          cache-dependency-path: packages/game1/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -39,7 +33,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: packages/game1/dist
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment

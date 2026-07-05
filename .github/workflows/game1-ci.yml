@@ -2,14 +2,8 @@ name: CI
 on:
   push:
     branches: [main, develop]
-    paths: ["packages/game1/**"]
   pull_request:
     branches: [main]
-    paths: ["packages/game1/**"]
-
-defaults:
-  run:
-    working-directory: packages/game1
 
 jobs:
   build:
@@ -21,9 +15,8 @@ jobs:
         with:
           node-version: 20
           cache: "npm"
-          cache-dependency-path: packages/game1/package-lock.json
       - run: npm ci
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: packages/game1/dist
+          path: dist

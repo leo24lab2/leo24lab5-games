@@ -2,12 +2,7 @@ name: Deploy (Cloudflare Pages)
 on:
   push:
     branches: [main]
-    paths: ["packages/game1/**"]
   workflow_dispatch:
-
-defaults:
-  run:
-    working-directory: packages/game1
 
 jobs:
   deploy:
@@ -22,7 +17,6 @@ jobs:
         with:
           node-version: 20
           cache: "npm"
-          cache-dependency-path: packages/game1/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -39,4 +33,3 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           command: pages deploy dist --project-name=leo24lab5-snake
-          workingDirectory: packages/game1
