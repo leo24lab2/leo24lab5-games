@@ -4,6 +4,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
 jobs:
   deploy:
     name: Build & Deploy to Cloudflare Pages
@@ -15,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "npm"
 
       - name: Install dependencies
@@ -27,9 +31,14 @@ jobs:
           VITE_ANALYTICS_ENDPOINT: ${{ secrets.ANALYTICS_ENDPOINT }}
           VITE_RELEASE_CHANNEL: production
 
+      - name: Install Wrangler CLI
+        run: npm install -g wrangler
+
+      - name: Ensure Cloudflare Pages project exists
+        continue-on-error: true
+        run: |
+          npx wrangler pages project create leo24lab5-snake --production-branch main
+
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=leo24lab5-snake
+        run: |
+          npx wrangler pages deploy dist --project-name=leo24lab5-snake --branch main
