@@ -34,11 +34,18 @@ jobs:
       - name: Install Wrangler CLI
         run: npm install -g wrangler
 
+      - name: Debug auth
+        run: |
+          echo "Account ID length: ${#CLOUDFLARE_ACCOUNT_ID} chars"
+          echo "API token length: ${#CLOUDFLARE_API_TOKEN} chars"
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then echo "WARNING: CLOUDFLARE_ACCOUNT_ID is empty!"; fi
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "WARNING: CLOUDFLARE_API_TOKEN is empty!"; fi
+
       - name: Ensure Cloudflare Pages project exists
         continue-on-error: true
         run: |
-          npx wrangler pages project create leo24lab5-snake --production-branch main
+          npx --yes wrangler pages project create leo24lab5-snake --production-branch main 2>&1
 
       - name: Deploy to Cloudflare Pages
         run: |
-          npx wrangler pages deploy dist --project-name=leo24lab5-snake --branch main
+          npx --yes wrangler pages deploy dist --project-name=leo24lab5-snake --branch main 2>&1
