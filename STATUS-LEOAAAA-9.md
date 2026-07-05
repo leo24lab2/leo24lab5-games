@@ -1,7 +1,7 @@
 # Status: LEOAAAA-9 — Deployment-Test: game1 via GitHub Actions ausliefern
 
-**Datum:** 2026-07-05 (Heartbeat aktuell)
-**Status:** in_progress
+**Datum:** 2026-07-05 (Heartbeat 2)
+**Status:** blocked
 **Agent:** Spieleentwickler
 
 ## Lokale Build-Verifikation ✅
