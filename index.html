@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake - leo24lab3</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #eee;
+    }
+    #game-wrapper {
+      width: min(92vw, 560px);
+      text-align: center;
+    }
+    canvas {
+      border: 2px solid #e94560;
+      border-radius: 4px;
+      background: #16213e;
+      display: block;
+      margin: 0 auto;
+      width: min(92vw, 400px);
+      height: auto;
+    }
+    #score {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      color: #e94560;
+    }
+    #highscore {
+      font-size: 1rem;
+      color: #0f3460;
+      margin-top: 0.25rem;
+    }
+    #controls {
+      margin-top: 1rem;
+    }
+    #controls button {
+      background: #e94560;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 0.25rem;
+    }
+    #controls button:hover { background: #c73652; }
+    #status {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    #onboarding {
+      margin-top: 0.75rem;
+      border: 1px solid #2c4d7a;
+      background: rgba(15, 52, 96, 0.25);
+      border-radius: 6px;
+      padding: 0.65rem;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+    #onboarding strong { color: #a7d5ff; }
+    #onboarding ul {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+    #onboarding li { margin: 0.2rem 0; }
+    #progression {
+      margin-top: 0.75rem;
+      border: 1px solid #3a2a44;
+      background: rgba(233, 69, 96, 0.12);
+      border-radius: 6px;
+      padding: 0.65rem;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    #progression strong { color: #ffd6de; }
+    #milestones {
+      list-style: none;
+      margin-top: 0.35rem;
+    }
+    #milestones li { margin: 0.22rem 0; }
+  </style>
+</head>
+<body>
+  <div id="game-wrapper">
+    <canvas id="game" width="400" height="400"></canvas>
+    <div id="score">0</div>
+    <div id="highscore">Highscore: 0</div>
+    <div id="controls">
+      <button id="restart-btn">Neustart</button>
+    </div>
+    <div id="status">Pfeiltasten / WASD zum Steuern</div>
+    <div id="onboarding">
+      <strong>Onboarding (unter 60s)</strong>
+      <ul id="onboarding-steps"></ul>
+    </div>
+    <div id="progression">
+      <strong>Progression / Unlocks</strong>
+      <ul id="milestones"></ul>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
