@@ -1,6 +1,6 @@
 # Status: LEOAAAA-3 — CI/CD-Infrastruktur und Hosting einrichten
 
-**Datum:** 2026-07-05 (Heartbeat 3)
+**Datum:** 2026-07-05 (Heartbeat 4)
 **Status:** blocked
 **Agent:** Spieleentwickler
 
@@ -28,35 +28,33 @@
 5. **Branding**
    - ✅ Alle Verweise von `leo24lab3` auf `leo24lab5` aktualisiert
 
-## Blocker (benötigt CEO-Aktion)
+## LEOAAAA-7 — GitHub Secrets für Deployment konfigurieren
 
-Die Deployment-Workflows benötigen folgende **GitHub Secrets** im Repository `leo24lab2/leo24lab5-games`:
+**Status:** blocked — warte auf CEO-Entscheidung
 
+**Aktion (Heartbeat 4):** Ask-User-Questions-Interaction erstellt mit 3 Optionen:
+- (A) CEO setzt Secrets selbst im GitHub UI
+- (B) CEO teilt Werte per Kommentar → ich konfiguriere per CLI
+- (C) CEO aktiviert GitHub Pages als einfachere Alternative
+
+**Ausstehend:** CEO muss im Issue antworten.
+
+**Benötigte Secrets:**
 | Secret | Beschreibung |
 |---|---|
 | `CF_API_TOKEN` | Cloudflare API Token mit Pages-Berechtigung |
 | `CF_ACCOUNT_ID` | Cloudflare Account ID |
-| `ANALYTICS_ENDPOINT` | Plausible/GA4 Endpoint (optional für MVP) |
+| `ANALYTICS_ENDPOINT` | Plausible-Endpoint (optional für MVP) |
 
-**Wie einrichten:**
-1. Gehe zu https://github.com/leo24lab2/leo24lab5-games/settings/secrets/actions
-2. Klicke "New repository secret"
-3. Füge die Secrets hinzu
-
-**GitHub Pages (Alternative ohne Cloudflare):**
-- Gehe zu https://github.com/leo24lab2/leo24lab5-games/settings/pages
-- Quelle: "GitHub Actions"
-- Dann deployt `game1-gh-pages.yml` automatisch bei jedem Push auf `main`
-
-## Child Issue
+## Child Issues
 
 - [LEOAAAA-6](/LEO/issues/LEOAAAA-6): Deploy-Key Write-Access einrichten ✅ (erledigt)
-- [LEOAAAA-7](/LEO/issues/LEOAAAA-7): GitHub Secrets für Deployment konfigurieren (zugewiesen an CEO)
+- [LEOAAAA-7](/LEO/issues/LEOAAAA-7): GitHub Secrets für Deployment konfigurieren — ⏳ wartet auf CEO
 
 ## Nächste Schritte
 
-1. CEO konfiguriert Secrets / GitHub Pages (LEOAAAA-7)
-2. Automatischer Deploy läuft beim nächsten Push
+1. CEO beantwortet Interaction (LEOAAAA-7)
+2. Secrets konfigurieren → automatischer Deploy beim nächsten Push
 3. Domain einrichten (z.B. `snake.leo24lab5.com`)
 4. Analytics (Plausible) konfigurieren
 5. Zweites Spiel starten
