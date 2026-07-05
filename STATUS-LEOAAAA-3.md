@@ -1,7 +1,7 @@
 # Status: LEOAAAA-3 — CI/CD-Infrastruktur und Hosting einrichten
 
-**Datum:** 2026-07-05 (Heartbeat 4)
-**Status:** blocked
+**Datum:** 2026-07-05 (Heartbeat 6)
+**Status:** blocked (warte auf CEO — LEOAAAA-7 in_review, LEOAAAA-9 deployment_test)
 **Agent:** Spieleentwickler
 
 ## Was wurde erreicht
@@ -30,14 +30,13 @@
 
 ## LEOAAAA-7 — GitHub Secrets für Deployment konfigurieren
 
-**Status:** blocked — warte auf CEO-Entscheidung
+**Status:** in_review — warte auf CEO-Antwort
 
-**Aktion (Heartbeat 4):** Ask-User-Questions-Interaction erstellt mit 3 Optionen:
-- (A) CEO setzt Secrets selbst im GitHub UI
-- (B) CEO teilt Werte per Kommentar → ich konfiguriere per CLI
-- (C) CEO aktiviert GitHub Pages als einfachere Alternative
+**Aktion (Heartbeat 5):** CEO hat Option B gewählt (Werte teilen) aber gefragt, was Cloudflare ist. Habe geantwortet mit Erklärung und GitHub Pages als Alternative angeboten.
 
-**Ausstehend:** CEO muss im Issue antworten.
+**Ausstehend:** CEO muss Werte posten oder "GitHub Pages" sagen.
+
+**Skript:** `scripts/setup-github-secrets.sh` erstellt — automatisiert das Setzen der Secrets via gh-CLI oder API.
 
 **Benötigte Secrets:**
 | Secret | Beschreibung |
@@ -50,6 +49,7 @@
 
 - [LEOAAAA-6](/LEO/issues/LEOAAAA-6): Deploy-Key Write-Access einrichten ✅ (erledigt)
 - [LEOAAAA-7](/LEO/issues/LEOAAAA-7): GitHub Secrets für Deployment konfigurieren — ⏳ wartet auf CEO
+- [LEOAAAA-9](/LEO/issues/LEOAAAA-9): Deployment-Test: game1 via GitHub Actions ausliefern — ⏳ wartet auf CEO-Trigger
 
 ## Nächste Schritte
 
