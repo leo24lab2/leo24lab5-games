@@ -30,17 +30,26 @@ npm run preview
 
 ## Deployment
 
-Siehe [deploy/README.md](./deploy/README.md) für die vollständige Deployment-Dokumentation.
+### Status: ✅ Live
 
-**Kurzfassung**:
-1. Repo auf GitHub erstellen
-2. GitHub Pages aktivieren
-3. Workflows aus `.github/workflows/` (package-local) oder `deploy/` nach `.github/workflows/` (Root) kopieren
-4. Pushen → automatischer Build & Deploy
+| Plattform | URL | Status |
+|---|---|---|
+| **GitHub Pages** | [https://leo24lab2.github.io/leo24lab5-games/](https://leo24lab2.github.io/leo24lab5-games/) | ✅ Aktiv (Primary) |
+| **Cloudflare Pages** | — | ⏳ Blockiert (Secrets-Konfiguration) |
 
-> **Hinweis**: Die Workflow-Dateien sind bereits in `packages/game1/.github/workflows/` vorbereitet.
-> Für GitHub Actions müssen sie ins Root-Verzeichnis `.github/workflows/` kopiert werden
-> (der `node`-User kann dies im aktuellen Container nicht tun — bitte von einem Admin ausführen lassen).
+### CI/CD-Pipeline
+
+- **CI**: GitHub Actions — Build + TypeScript Check bei jedem Push auf `main`/`develop` + PR
+- **CD**: Auto-Deploy zu GitHub Pages bei Push auf `main`
+- **Workflow-Dateien**: `.github/workflows/game1-ci.yml`, `.github/workflows/game1-gh-pages.yml`
+
+### Manuelles Deployment
+
+```bash
+npm run build      # Build erzeugen
+npm run preview    # Lokal testen
+git push origin main  # Automatischer Deploy
+```
 
 ## Analytics Events
 
